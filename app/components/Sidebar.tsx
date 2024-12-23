@@ -55,9 +55,8 @@
 // }
 
 
-
 import React from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
 import { BsClock } from "react-icons/bs";
 import { VscPinned } from "react-icons/vsc";
@@ -75,6 +74,7 @@ const iconMap = {
 
 export default function Sidebar({ isOpen, onClose }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleItemClick = (link) => {
     router.push(link.path);
@@ -85,13 +85,13 @@ export default function Sidebar({ isOpen, onClose }) {
 
   return (
     <aside
-      id="default-sidebar"
-      className={`fixed top-0 left-0 z-40 w-64 h-screen border-r-4 transition-transform ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
-      } sm:translate-x-0`}
-      aria-label="Sidebar"
-    >
-      <div className="h-full px-4 py-6 overflow-y-auto bg-gray-50">
+  id="default-sidebar"
+  className={`fixed top-0 left-0 z-40 w-64 h-screen border-r-2 transition-transform ${
+    isOpen ? "translate-x-0" : "-translate-x-full"
+  } sm:translate-x-0`}
+  aria-label="Sidebar"
+>
+      <div className="h-full px-4 py-6 overflow-y-auto bg-gray-100">
         <div className="space-y-8">
           {SidebarData.map((section) => (
             <div key={section.title}>
@@ -101,8 +101,8 @@ export default function Sidebar({ isOpen, onClose }) {
               <ul className="mt-2 space-y-2">
                 {section.links.map((link) => {
                   const Icon = iconMap[link.icon];
-                  const isActive = router.pathname === link.path;
-                  
+                  const isActive = pathname === link.path;
+
                   return (
                     <li key={link.name}>
                       <button
@@ -113,8 +113,8 @@ export default function Sidebar({ isOpen, onClose }) {
                             : "text-gray-900 hover:bg-gray-100"
                         }`}
                       >
-                        <Icon className={isActive ? "text-gray-600" : ""} />
-                        <span className="ml-3">{link.name}</span>
+                        <Icon className={`mr-3 ${isActive ? "text-gray-600" : ""}`} />
+                        <span>{link.name}</span>
                       </button>
                     </li>
                   );
