@@ -12,8 +12,13 @@ import { BsHandThumbsUp, BsHandThumbsDown } from "react-icons/bs";
 import { TbShieldPin } from "react-icons/tb";
 import { BsFillRecordCircleFill } from "react-icons/bs";
 
-export default function EngageModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+interface EngageModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const EngageModal: React.FC<EngageModalProps> = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-16">
@@ -171,3 +176,5 @@ export default function EngageModal({ isOpen, onClose }) {
     </div>
   );
 }
+
+export default EngageModal;
