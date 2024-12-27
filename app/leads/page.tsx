@@ -4,16 +4,19 @@ import Ellipse1 from "../assets/Ellipse1.png";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { VscSparkleFilled } from "react-icons/vsc";
 import EngagementCard from "../components/EngagementCard";
+import Range from '../components/Range'
 
 export default function Home() {
   return (
     <div className=" text-black">
-      <div className="my-6 flex items-center justify-between">
+      <div className="my-3 flex items-center justify-between">
         <h2 className="text-md font-bold">
           Hi Mona, <span className="text-blue-700">68%</span> of goal achieved
           and rest can be achieved by focusing on 20 top leads
         </h2>
-        <div>range here</div>
+        <div>
+          <Range />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
